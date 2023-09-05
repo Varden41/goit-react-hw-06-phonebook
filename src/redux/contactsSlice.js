@@ -22,7 +22,7 @@ const contactsSlice = createSlice({
 });
 
 const persistConfig = {
-  key: '',
+  key: 'root',
   storage,
   whitelist: ['data'],
 };
