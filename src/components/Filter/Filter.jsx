@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { LabelStyled, InputStyled } from './Filter.styled';
+import { setFilter, getFilter } from 'redux/filterSlice/filterSlice';
 
-const Filter = ({ filter, onFilter }) => {
+const Filter = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector(getFilter);
   const onSearch = e => {
-    onFilter(e.target.value);
+    dispatch(setFilter(e.target.value.toLowerCase()));
   };
   return (
     <>

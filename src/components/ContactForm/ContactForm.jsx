@@ -1,7 +1,9 @@
 import { useForm } from 'react-hook-form';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+// import PropTypes from 'prop-types';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { addContact, getItem } from 'redux/contactsSlice/contactsSlice';
 
 import {
   FormStyled,
@@ -28,10 +30,11 @@ let schema = yup.object({
     ),
 });
 
-function ContactForm({ onSubmit }) {
+const ContactForm = () => {
+  const dispatch = useDispatch();
   const {
     register,
-    handleSubmit,
+    // handleSubmit,
     formState: { errors },
     reset,
   } = useForm({
@@ -40,8 +43,14 @@ function ContactForm({ onSubmit }) {
   });
 
   const onHandleSubmit = ({ name, number }) => {
-    onSubmit(name, number);
+    // onSubmit(name, number);
     reset();
+  };
+
+  const handleSubmit = e => {
+    event.preventDefault();
+    const from = e.target;
+    dispatch(addContact(form.element));
   };
 
   return (
@@ -60,8 +69,8 @@ function ContactForm({ onSubmit }) {
       <ButtonStyled type="submit">Add contact</ButtonStyled>
     </FormStyled>
   );
-}
+};
 
-ContactForm.propTypes = { onSubmit: PropTypes.func.isRequired };
+// ContactForm.propTypes = { onSubmit: PropTypes.func.isRequired };
 
 export default ContactForm;

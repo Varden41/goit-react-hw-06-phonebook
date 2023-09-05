@@ -1,8 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ButtonStyled, ListItem } from './ContactList.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteContact, getItem } from 'redux/contactsSlice/contactsSlice';
+import { setFilter } from 'redux/filterSlice/filterSlice';
 
-function ContactList({ filteredContacts, onDelete }) {
+function ContactList() {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getItem);
+  const filter = useSelector(setFilter);
+  const delContacts = e => {
+    dispatch(deleteContact(event.target.name));
+  };
   return (
     <ul>
       {filteredContacts().map(contact => {
