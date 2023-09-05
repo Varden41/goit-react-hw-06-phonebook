@@ -12,9 +12,9 @@ export const InputStyled = styled.input`
   margin-inline: auto;
   margin-bottom: 10px;
 `;
-export const ErrorMessageStyled = styled.p`
-  text-align: center;
-`;
+// export const ErrorMessageStyled = styled.p`
+//   text-align: center;
+// `;
 export const LabelStyled = styled.label`
   text-align: center;
   font-size: 20px;

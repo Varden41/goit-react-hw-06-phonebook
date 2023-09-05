@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { LabelStyled, InputStyled } from './Filter.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter, getFilter } from 'redux/filterSlice';
 
-const Filter = ({ filter, onFilter }) => {
-  const onSearch = e => {
-    onFilter(e.target.value);
+const Filter = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector(getFilter);
+  const onFilter = e => {
+    dispatch(setFilter(e.target.value.toLowerCase()));
   };
+
   return (
     <>
       <LabelStyled htmlFor="search">
@@ -17,16 +22,16 @@ const Filter = ({ filter, onFilter }) => {
           type="text"
           name="search"
           value={filter}
-          onChange={onSearch}
+          onChange={onFilter}
         />
       </LabelStyled>
     </>
   );
 };
 
-Filter.propTypes = {
-  onFilter: PropTypes.func.isRequired,
-  filter: PropTypes.string.isRequired,
-};
+// Filter.propTypes = {
+//   onFilter: PropTypes.func.isRequired,
+//   filter: PropTypes.string.isRequired,
+// };
 
 export default Filter;
