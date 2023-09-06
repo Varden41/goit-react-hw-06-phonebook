@@ -9,7 +9,6 @@ const Filter = () => {
   const onFilter = e => {
     dispatch(setFilter(e.target.value.toLowerCase()));
   };
-
   return (
     <>
       <LabelStyled htmlFor="search">
@@ -27,5 +26,4 @@ const Filter = () => {
     </>
   );
 };
-
 export default Filter;
