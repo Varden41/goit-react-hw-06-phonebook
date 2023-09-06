@@ -12,7 +12,7 @@ function ContactList() {
   };
   const contactsFilter = () => {
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter).toLowerCase()
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
   return (
