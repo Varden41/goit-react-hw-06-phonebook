@@ -1,5 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { ButtonStyled, ListItem } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact, getItem } from 'redux/contactsSlice';
@@ -13,18 +11,13 @@ function ContactList() {
     dispatch(deleteContact(e.target.name));
   };
   const contactsFilter = () => {
-    if (filter === '') {
-      return false;
-    }
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter)
+      contact.name.toLowerCase().includes(filter).toLowerCase()
     );
   };
-  const filteredRender = contactsFilter();
-  const finalrender = filteredRender ? filteredRender : contacts;
   return (
     <ul>
-      {finalrender.map(({ id, name, number }) => {
+      {contactsFilter().map(({ id, name, number }) => {
         return (
           <ListItem key={id}>
             {name}: {number}
@@ -37,10 +30,5 @@ function ContactList() {
     </ul>
   );
 }
-
-// ContactList.propTypes = {
-//   filteredContacts: PropTypes.func.isRequired,
-//   onDelete: PropTypes.func.isRequired,
-// };
 
 export default ContactList;
